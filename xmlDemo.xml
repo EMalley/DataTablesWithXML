@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="cdcatalog.xsl"?>
+<breakfast_menu> 
+   
+   <food date = "2014-11-11"> 
+        <url>www.google.com</url>
+        <date>10/10/20</date>
+        <name>Belgian Waffles</name>
+        <abv>bw</abv>
+        <price>$5.95</price> 
+        <description>Two of our famous Belgian Waffles with plenty of real maple syrup</description> 
+        <calories>650</calories> 
+        <test>abc</test> 
+   </food> 
+   
+   <food date = "2013-11-11">
+   <url>www.google.com</url>
+   <date>7/2/10</date>
+       <name>Strawberry Belgian Waffles</name> 
+       <price>$7.95</price> 
+       <abv>sbw</abv>
+       <description>Light Belgian waffles covered with strawberries and whipped cream</description> 
+       <calories>900</calories> 
+       <test>abc</test> 
+   </food> 
+   
+   <food date = "2012-11-11"> 
+   <url>www.google.com</url>
+   <date>1/7/2020</date>
+       <name>Berry-Berrys</name> 
+       <price>$8.95</price> 
+       <abv>bb</abv>
+       <description>Light Belgian waffles covered with an assortment of fresh berries and whipped cream</description> 
+       <calories>900</calories>
+       <test>abc</test>  
+   </food> 
+   
+   <food date = "2011-11-11"> 
+   <url>www.amazon.com</url>
+   <date>10/7/2008</date>
+       <name>French Toast</name> 
+       <price>$4.50</price> 
+       <abv>ft</abv>
+       <description>Thick slices made from our homemade sourdough bread</description> 
+       <calories>600</calories> 
+       <test>ac</test> 
+   </food> 
+   
+   <food date = "2000-11-11"> 
+   <url>www.google.com</url>
+   <date>01/10/2019</date>
+       <name>Homestyle Breakfast</name> 
+       <price>$6.95</price> 
+       <abv>hb</abv>
+       <description>Two eggs, bacon or sausage, toast, and our ever-popular hash browns</description> 
+       <calories>950</calories> 
+       <test>bc</test> 
+   </food> 
+ 
+
+  
+   
+</breakfast_menu>
