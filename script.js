@@ -36,7 +36,7 @@ function buildTable(response) {
         array.push(item);
     });
 
-    $("#results").DataTable({
+    var table = $("#results").DataTable({
         data: array,
         columns: [
             {
@@ -48,7 +48,9 @@ function buildTable(response) {
             { "data": "price" },
             { "data": "abv" },
             { "data": "calories" },
-            { "data": "description" },
+            {
+                "data": "description"
+            },
             { "data": "test" },
             { "data": "url" },
 
@@ -72,63 +74,44 @@ function buildTable(response) {
         ],
         "deferRender": true,
         initComplete: function () {
-            // var column = this.api().column(6);
-
-            // var select = $('<select class="filter"><option value="">All</option></select>')
-            //     .appendTo('#triggerFilter')
-            //     .on('change', function () {
-            //         var val = $(this).val();
-            //         //column.search(val ? '^' + $(this).val() + '$' : val, true, false).draw();
-            //         column.search(val).draw()
-            //     });
-
-            // var values = [];
-            // column.data().toArray().forEach(function (s) {
-            //     s = s.split(',');
-            //     s.forEach(function (d) {
-            //         if (!~values.indexOf(d)) {
-            //             values.push(d)
-            //             select.append('<option value="' + d + '">' + d + '</option>');
-            //         }
-            //     })
-            // })
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            var columns = this.api().column(6);
-            //var url = this.api().column(7);
-            var name = $('<select class="filter"><option value="">All</option></select>')
-                .appendTo('#triggerName')
-                .on('change', function () {
-                    var val = $(this).val();
-
-                    //column.search(val ? '^' + $(this).val() + '$' : val, true, false).draw();
-                    columns.search(val).draw()
-                });
-            var names = [];
-            columns.data().toArray().forEach(function (s) {
-                s = s.split(',');
-                s.forEach(function (d) {
-                    if (!~names.indexOf(d)) {
-                        names.push(d)
-                        name.append('<option value="' + d + '">' + d + '</option>');
-                    }
-                })
-            })
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         
             var abv = this.api().column(3);
-            var u = this.api().column(7);
-            console.log(u)
+            var columns = this.api().column(5);
             var val = $(this).val();
-            u.search(val ? '^' + $(this).val() + '$' : val, true, false).draw();
+
+            abv.search(val ? '^' + $(this).val() + '$' : val, true, false).draw();
 
             var selects = $('<select class="filter"><option value="">All</option></select>')
                 .appendTo('#triggerAbv')
                 .on('change', function () {
                     var val = $(this).val();
+
                     // val = val.search("^"+this.value + "$", true,true,false)
-                    abv.search(val ? '^' + $(this).val() + '$' : val, true, false).draw();
-                    //abv.search(val).draw()
+                    abv.search(val ? '^' + $(this).val() + '$' : val, true, false).draw()
                 });
 
+            var name = $('<select class="filter"><option value="">All</option></select>')
+                name.appendTo('#triggerName')
+                    .on('change', function () {
+                        var val = $(this).val();
+
+                        //column.search(val ? '^' + $(this).val() + '$' : val, true, false).draw();
+                        columns.search(val).draw()
+                    });
+    
+            var names = [];
+            columns.data().toArray().forEach(function (t) {
+                console.log
+                t = t.split('""');
+                t.forEach(function (h) {
+                    if (!~names.indexOf(h)) {
+                        names.push(h)
+                        name.append('<option value="' + h + '">' + h + '</option>');
+                    }
+                })
+            })
+
+            /////////////////////////
             var foodObj = {
                 ft: "French Toast",
                 bb: "Berry's Berry",
@@ -139,25 +122,36 @@ function buildTable(response) {
             }
             $.each(foodObj, function (a, b) {
                 var abvs = []
-                abv.data().toArray().forEach(function (s, t) {
+                //get description based off of the ABV chosen. 
+
+                abv.data().toArray().forEach(function (s) {
                     s = s.split(',');
                     s.forEach(function (d) {
+                        //console.log(i)
                         if (!~abvs.indexOf(d)) {
                             abvs.push(d)
-                            console.log(abvs)
+                            //console.log(abvs)
                             if (d === a) {
                                 selects.append('<option value="' + a + '">' + b + '</option>');
+                                // $("#triggerName").append('<option value="' + b + '">' + h + '</option>');
                             }
-                            //remove searches from name tab
-
                         }
-                    })
+                    });
+
                 })
             })
         },
 
     })
 }
+// t.forEach(function (h) {
+//     if (!~names.indexOf(h)) {
+//         names.push(h)
+//          if (d === a) {
+//         name.append('<option value="' + d + '">' + h + '</option>');
+//         }
+//     }
+// })
 
 
 
@@ -165,3 +159,6 @@ $(document).ready(function () {
     getData();
 
 })
+
+
+

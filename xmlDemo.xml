@@ -29,14 +29,14 @@
    <date>1/7/2020</date>
        <name>Berry-Berrys</name> 
        <price>$8.95</price> 
-       <abv>bb</abv>
+       <abv>ft</abv>
        <description>Light Belgian waffles covered with an assortment of fresh berries and whipped cream</description> 
        <calories>900</calories>
        <test>abc</test>  
    </food> 
    
    <food date = "2011-11-11"> 
-   <url>www.amazon.com</url>
+   <url>www.youtube.com</url>
    <date>10/7/2008</date>
        <name>French Toast</name> 
        <price>$4.50</price> 
@@ -47,7 +47,7 @@
    </food> 
    
    <food date = "2000-11-11"> 
-   <url>www.google.com</url>
+   <url>www.amazon.com</url>
    <date>01/10/2019</date>
        <name>Homestyle Breakfast</name> 
        <price>$6.95</price> 
