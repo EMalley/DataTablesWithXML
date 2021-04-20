@@ -29,7 +29,11 @@
   table-layout: fixed; 
   word-wrap:break-word; 
 } */
-
+.px200 {
+  width: 50px;
+  max-width: 100px;
+  word-wrap: break-word;
+}
 
 </style>
 
@@ -51,10 +55,10 @@
                     <p class="all" id="triggerAbv"><label><strong>Sort ABV: </strong></label><br></p>
                     <thead>
                         <tr>
-                            <th data-column="date" data-order="desc" scope="col" width="120">date</th>
-                            <th data-column="name" data-order="desc" scope="col" width="120">name</th>
-                            <th scope="col" width="120">price</th>
-                            <th scope="col" width="120">ABV</th>
+                            <th data-column="date" data-order="desc" scope="col" width="120" class ="dateheader">date</th>
+                            <th class="name" data-column="name" data-order="desc" scope="col" width="120">name</th>
+                            <th class="name" scope="col" width="120">price</th>
+                            <th class="name" scope="col" width="120">ABV</th>
                             <th scope="col" width="120">calories</th>
                             <th data-column="description" data-order="desc" scope="col" width="120">description</th>
                             <th data-column="description" data-order="desc" scope="col" width="120">test</th>

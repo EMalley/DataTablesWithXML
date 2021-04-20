@@ -19,6 +19,26 @@ function getData() {
 }
 
 function buildTable(response) {
+    // Setup - add a text input to each footer cell
+    $('#results thead tr').clone(true).appendTo('#results thead');
+    $('#results thead tr:eq(1) th').each(function (i) {
+        var title = $(this).text();
+        console.log(title)
+        if (title != 'date') {
+            
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+
+            $('input', this).on('keyup change', function () {
+                if (table.column(i).search() !== this.value) {
+                    table
+                        .column(i)
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        }
+    }
+    );
     $(response).find("food").each(function () {
 
         var url = $('url', this).text();
@@ -36,43 +56,44 @@ function buildTable(response) {
         array.push(item);
     });
 
-    $("#results").DataTable({
+    var table = $("#results").DataTable({
         data: array,
+        autowidth: false,
         columns: [
             {
-                "data": "date", render: function (d) {
+                "data": "date", className: "date", render: function (d) {
                     return moment(d).format("MM/DD/YYYY")
                 }
             },
-            { "data": "name" },
-            { "data": "price" },
-            { "data": "abv" },
-            { "data": "calories" },
+            { "data": "name", className: "px200" },
+            { "data": "price", className: "px200" },
+            { "data": "abv", className: "px200" },
+            { "data": "calories", className: "px200" },
             {
-                "data": "description"
+                "data": "description", className: "px200"
             },
-            { "data": "test" },
-            { "data": "url" },
+            { "data": "test", className: "px200" },
+            { "data": "url", className: "px200" },
 
         ],
         columnDefs: [
 
-            // {
-            //     targets: 1,
-            //     "width": "20",
-            //     render: function (d, t, r, m) {
-            //         // console.log(data)
+            {
+                targets: 1,
+                //autowidth:false,
+                render: function (d, t, r, m) {
+                  //  console.log(r)
 
-            //         r.name = "<a href=" + r.url + ">" + r.name + "</a>"
+                    r.name = "<a href=" + r.url + ">" + r.name + "</a>"
 
-            //         return r.name;
-            //     },
-            // render: function (d, t, r) { return d.substr(0, 30); },
-            // targets: 1,
+                    return r.name;
+                },
+                // render: function (d, t, r) { return d.substr(0, 30); },
+                // targets: 1,
 
 
-            //},
-            { targets: 1, render: function (d, t, r) { return d.substr(0, 30); } }
+            },
+            // { targets: 1, render: function (d, t, r) { return d.substr(0, 30); } }
 
         ],
         "deferRender": true,
@@ -91,21 +112,21 @@ function buildTable(response) {
             var selects = $('<select class="filter"><option value="">All ABVS</option></select>')
                 .appendTo('#triggerAbv')
                 .on('change', function () {
-                    name.empty().append("<option value=>All Names</option>")
                     var val = $(this).val();
                     // val = val.search("^"+this.value + "$", true,true,false)
                     abv.search(val ? '^' + $(this).val() + '$' : val, true, false).draw()
+                    name.empty().append("<option value=''>All Names</option>")
                     for (var i = 0; i < columns.length; i++) {
                         var row = columns[i];
                         if (val == row.abv) {
                             var seen = {};
-                            $("option").each(function () {
+                            name.children().each(function () {
                                 var txt = $(this).text();
                                 console.log(txt)
                                 if (seen[txt])
-                                $(this).remove();
+                                    $(this).remove();
                                 else
-                                seen[txt] = true;
+                                    seen[txt] = true;
                             });
                             name.append('<option>' + row.description + '</option>');
                         }
