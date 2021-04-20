@@ -18,7 +18,7 @@
    <date>7/2/10</date>
        <name>Strawberry Belgian Waffles</name> 
        <price>$7.95</price> 
-       <abv>sbw</abv>
+       <abv>ft</abv>
        <description>Light Belgian waffles covered with strawberries and whipped cream</description> 
        <calories>900</calories> 
        <test>abc</test> 
@@ -35,6 +35,26 @@
        <test>abc</test>  
    </food> 
    
+   <food date = "2011-11-11"> 
+   <url>www.youtube.com</url>
+   <date>10/7/2008</date>
+       <name>French Toast</name> 
+       <price>$4.50</price> 
+       <abv>ft</abv>
+       <description>Light Belgian waffles covered with an assortment of fresh berries and whipped cream</description> 
+       <calories>600</calories> 
+       <test>ac</test> 
+   </food> 
+   <food date = "2011-11-11"> 
+   <url>www.youtube.com</url>
+   <date>10/7/2008</date>
+       <name>French Toast</name> 
+       <price>$4.50</price> 
+       <abv>ft</abv>
+       <description></description> 
+       <calories>600</calories> 
+       <test>ac</test> 
+   </food> 
    <food date = "2011-11-11"> 
    <url>www.youtube.com</url>
    <date>10/7/2008</date>
