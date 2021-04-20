@@ -80,7 +80,7 @@ function buildTable(response) {
             var abv = this.api().column(3);
             var columns = this.api($("#results")).data();
 
-            var name = $('<select id="test" class="filter"><option class="subject" value="">All</option></select>')
+            var name = $('<select id="test" class="filter"><option class="subject" value="">All NAME</option></select>')
             name.appendTo('#triggerName')
                 .on('change', function () {
                     var val = $(this).val();
@@ -88,16 +88,25 @@ function buildTable(response) {
                     columns.search(val).draw()
                 });
 
-            var selects = $('<select class="filter"><option value="">All</option></select>')
+            var selects = $('<select class="filter"><option value="">All ABVS</option></select>')
                 .appendTo('#triggerAbv')
                 .on('change', function () {
-                    name.empty().append("<option value=>All</option>")
+                    name.empty().append("<option value=>All Names</option>")
                     var val = $(this).val();
                     // val = val.search("^"+this.value + "$", true,true,false)
                     abv.search(val ? '^' + $(this).val() + '$' : val, true, false).draw()
                     for (var i = 0; i < columns.length; i++) {
                         var row = columns[i];
                         if (val == row.abv) {
+                            var seen = {};
+                            $("option").each(function () {
+                                var txt = $(this).text();
+                                console.log(txt)
+                                if (seen[txt])
+                                $(this).remove();
+                                else
+                                seen[txt] = true;
+                            });
                             name.append('<option>' + row.description + '</option>');
                         }
 
