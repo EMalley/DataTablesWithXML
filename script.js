@@ -22,16 +22,11 @@ function getData() {
 function buildTable(response) {
     $(response).find("food").each(function () {
 
-        //console.log($("abv", this))
         var arr = []
         var ab = $("abv", this);
         ab.each(function () {
             arr.push($(this).text())
         })
-
-
-        //console.log(arr)
-        // console.log(result)
 
         var url = $('url', this).text();
         var date = $(this).attr('date');
@@ -46,7 +41,7 @@ function buildTable(response) {
             url: url
         }
         array.push(item);
-        //console.log(array)
+
     });
 
     $("#results").DataTable({
@@ -70,34 +65,21 @@ function buildTable(response) {
         columnDefs: [
             {
                 targets: 1,
-                //autowidth:false,
                 render: function (d, t, r, m) {
-                    //  console.log(r)
-
                     r.name = "<a href=" + r.url + ">" + r.name + "</a>"
-
                     return r.name;
-                },
-                // render: function (d, t, r) { return d.substr(0, 30); },
-                // targets: 1,
+                }, 
             },
-            // { targets: 1, render: function (d, t, r) { return d.substr(0, 30); } }
-
         ],
         "deferRender": true,
         initComplete: function () {
             var abv = this.api().column(3);
-            //console.log(abv)
             var columns = this.api($("#results")).data();
-
-
-
             var name = $('<select id="test" class="filter"><option class="subject" value="">All NAME</option></select>')
             name.appendTo('#triggerName')
                 .on('change', function () {
                     var val = $(this).val();
                     columns.search(val ? '' + val + '' : '', true, false).draw();
-                    //columns.search(val).draw()
                 });
 
             var selects = $('<select class="filter"><option value="">All ABVS</option></select>')
@@ -106,13 +88,12 @@ function buildTable(response) {
                 name.empty().append("<option value=''>All Names</option>")
                 for (var i = 0; i < columns.length; i++) {
                     var row = columns[i];
-                    //console.log(row.abv)
+                    console.log(row)
 
                     var val = $(this).val();
                     console.log(val)
                     // val = val.search("^"+this.value + "$", true,true,false)
                     abv.search(val ? '' + $(this).val() + '' : val, true, false).draw()
-                    //console.log(row)
                     for (var j = 0; j < row.abv.length; j++) {
                         var a = row.abv[j];
                         console.log(a)
@@ -134,7 +115,6 @@ function buildTable(response) {
             }
             $.each(foodObj, function (a, b) {
                 //get description based off of the ABV chosen.
-                var arr = []
                 for (var j = 0; j < columns.length; j++) {
                     var abv = columns[j].abv;
                     for (var t = 0; t < abv.length; t++) {
