@@ -44,7 +44,8 @@ function buildTable(response) {
 
     });
 
-    $("#results").DataTable({
+    var table = $("#results").DataTable({
+
         data: array,
         autowidth: false,
         columns: [
@@ -68,13 +69,50 @@ function buildTable(response) {
                 render: function (d, t, r, m) {
                     r.name = "<a href=" + r.url + ">" + r.name + "</a>"
                     return r.name;
-                }, 
+                },
             },
         ],
         "deferRender": true,
         initComplete: function () {
+            // var toggle = table.columns($(this).attr("data-column"))
+            // console.log(toggle)
             var abv = this.api().column(3);
+            console.log(abv)
             var columns = this.api($("#results")).data();
+            console.log(columns)
+
+            $('#but_showhide').click(function () {
+                var checked_arr = []; var unchecked_arr = [];
+        
+                // Read all checked checkboxes
+                $.each($('input[type="checkbox"]:checked'), function (key, value) {
+                    checked_arr.push(this.value);
+                });
+        
+                // Read all unchecked checkboxes
+                $.each($('input[type="checkbox"]:not(:checked)'), function (key, value) {
+                    unchecked_arr.push(this.value);
+                });
+        
+                // Hide the checked columns
+                table.columns(checked_arr).visible(false);
+        
+                // Show the unchecked columns
+                table.columns(unchecked_arr).visible(true);
+            });
+
+
+
+            $('a.toggle-vis').on('click', function (e) {
+                e.preventDefault();
+                // Get the column API object
+                var c = $("<a></a>")
+                c.addClass("toggle-vis");
+                c.attr("data-column",)
+                // Toggle the visibility
+                column.visible(!column.visible());
+            });
+
             var name = $('<select id="test" class="filter"><option class="subject" value="">All NAME</option></select>')
             name.appendTo('#triggerName')
                 .on('change', function () {
@@ -157,4 +195,6 @@ function buildTable(response) {
 
 $(document).ready(function () {
     getData();
-})
+    // Hide & show columns
+});
+

@@ -21,7 +21,7 @@
 
 </head>
 <style>
-/* table {
+    /* table {
   margin: 0 auto;
   width: 100%;
   clear: both;
@@ -29,14 +29,11 @@
   table-layout: fixed; 
   word-wrap:break-word; 
 } */
-.px200 {
-  width: 50px;
-  max-width: 100px;
-  word-wrap: break-word;
-}
-
-
-
+    .px200 {
+        width: 50px;
+        max-width: 100px;
+        word-wrap: break-word;
+    }
 </style>
 
 
@@ -47,8 +44,25 @@
         <div class="jumbotron" style="text-align: center;">
             <h1 id="headerTitle">Food Menu List</h1>
         </div>
+        <div>
+            <div class="container">
+                <div class="row">
 
-        <ul></ul>
+                    <div class="col-12 text-center">
+                        <h6>Show/Hide Columns</h6><br>
+                        <div>
+                            <input type="checkbox" name='hide_columns[]' value='0'> Employee
+                            <input type="checkbox" name='hide_columns[]' value='1'> Email
+                            <input type="checkbox" name='hide_columns[]' value='2'> Gender
+                            <input type="checkbox" name='hide_columns[]' value='3'> Salary
+                            <input type="checkbox" name='hide_columns[]' value='4'> City
+
+                        </div>
+                        <input type="button" id="but_showhide" value='Show/Hide'>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <div class="container">
@@ -58,9 +72,11 @@
                     <!-- <p class="all" id="triggerFilter"><label><strong>Sort test: </strong></label><br></p> -->
                     <p class="all" id="triggerName"><label><strong>Sort Name: </strong></label><br></p>
                     <p class="all" id="triggerAbv"><label><strong>Sort ABV: </strong></label><br></p>
+
                     <thead>
                         <tr>
-                            <th data-column="date" data-order="desc" scope="col" width="120" class ="dateheader">date</th>
+                            <th data-column="date" data-order="desc" scope="col" width="120" class="dateheader">date
+                            </th>
                             <th class="name" data-column="name" data-order="desc" scope="col" width="120">name</th>
                             <th class="name" scope="col" width="120">price</th>
                             <th class="name" scope="col" width="120">ABV</th>
@@ -93,6 +109,13 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script src="./datatables.min.js"></script>
 <!-- <script src="./plugin.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 <script src="script.js"></script>
 <script>
     // Do some stuff when page hmtl page is launched
